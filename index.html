@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#020b12">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src https://script.google.com https://script.googleusercontent.com; form-action 'none'; base-uri 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Benzabet Casino &mdash; Coming soon</title>
+  <meta name="description" content="Benzabet Casino is coming soon. Leave your email address and get one email when the casino opens.">
+  <link rel="canonical" href="https://benzabet.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Benzabet">
+  <meta property="og:title" content="Benzabet Casino &mdash; Coming soon">
+  <meta property="og:description" content="Get an email when the casino opens.">
+  <meta property="og:url" content="https://benzabet.com/">
+  <meta property="og:image" content="https://benzabet.com/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="preload" as="image" type="image/webp" imagesrcset="img/owl-office-1000.webp 1000w, img/owl-office.webp 1672w" imagesizes="(max-width:700px) 100vw, 69vw">
+  <style>
+    :root{--base:#020b12;--surface:#071823;--text:#f5f8fa;--muted:#aec0cc;--cyan:#00bfec;--line:#233947;--width:min(1240px,90vw);color-scheme:dark;font-family:Arial,Helvetica,sans-serif;background:var(--base);color:var(--text)}
+    *{box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+    body{margin:0;display:flex;min-height:100vh;min-height:100svh;flex-direction:column;isolation:isolate}
+    [hidden]{display:none!important}
+    .container{width:var(--width);margin-inline:auto}
+
+    /* The casino lobby, out of focus, behind the page. The blur is in the picture itself. The box keeps one
+       size when a phone's address bar slides away, so the picture never jumps. */
+    .lobby-backdrop{position:fixed;top:0;left:0;width:100%;height:100vh;height:100lvh;z-index:-1;pointer-events:none;overflow:hidden;background:#020b12}
+    .lobby-backdrop picture{display:block;position:absolute;inset:-15px;opacity:.93}
+    .lobby-backdrop img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 72%}
+    .lobby-backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgb(2 11 18 / 52%),rgb(2 11 18 / 38%) 60%,rgb(2 11 18 / 53%))}
+
+    .top{border-bottom:1px solid #1a2b37;background:#041018;padding-top:env(safe-area-inset-top)}
+    .top-inner{height:82px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .brand{display:block;line-height:0}
+    .wordmark{display:block;width:190px;height:auto}
+    .age-note{display:flex;align-items:center;gap:10px;color:#beccd6;font-size:13px;white-space:nowrap}
+    .age{border:1px solid #647987;border-radius:50%;height:31px;width:31px;display:grid;place-items:center;font-weight:700;font-size:11px;color:#e0e8ef;flex:none}
+
+    main{flex:1;padding-block:clamp(26px,4.7vh,52px) 30px}
+    .hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;min-height:clamp(450px,54vh,600px);border-radius:18px;border:1px solid #304651;background:#071823;box-shadow:0 15px 46px rgb(0 6 11 / 44%)}
+    .art{position:absolute;z-index:-1;inset:0 0 0 auto;width:69%;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 29%);mask-image:linear-gradient(90deg,transparent 0%,#000 29%)}
+    .art picture{display:block;width:100%;height:100%}
+    .art img{width:100%;height:100%;display:block;object-fit:cover;object-position:50% 42%}
+    .copy{padding:clamp(38px,4.6vw,68px);width:57%}
+    .label{margin:0 0 18px;display:flex;align-items:center;gap:10px;color:#39cffa;letter-spacing:.14em;font-size:12px;font-weight:700;line-height:1.25;text-transform:uppercase}
+    .label svg{width:21px;height:21px;color:var(--cyan);flex:none}
+    h1{margin:0;font-size:clamp(62px,6.5vw,96px);line-height:.94;letter-spacing:-.062em;font-weight:700;text-transform:uppercase}
+    h1 span{display:block}h1 b{color:var(--cyan)}
+    .invite{margin:24px 0 19px;color:#d2dfe7;font-size:clamp(16px,1.3vw,19px);line-height:1.5}
+
+    form{display:flex;gap:8px;margin:0}
+    .email{position:relative;flex:1;min-width:0}
+    .email svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:#98afbd;pointer-events:none}
+    .sr{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden;white-space:nowrap}
+    /* A field for robots only: off the page, out of the tab order, hidden from screen readers. */
+    .trap{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    input,button{font-family:inherit;font-size:15px}
+    input{width:100%;height:53px;padding:0 12px 0 42px;border:1px solid #415564;border-radius:8px;background:#07121cf5;color:#f5f8fa;-webkit-appearance:none;appearance:none}
+    input::placeholder{color:#b0bfca;opacity:1}
+    input:focus{border-color:#6fdcf6}
+    input[aria-invalid="true"]{border-color:#ff9c8c}
+    button{border:1px solid #3acded;border-radius:8px;background:var(--cyan);color:#012538;display:flex;align-items:center;justify-content:center;gap:10px;min-height:53px;padding:0 20px;font-weight:700;white-space:nowrap;cursor:pointer;-webkit-appearance:none;appearance:none;-webkit-tap-highlight-color:transparent}
+    button svg{width:15px;height:15px;flex:none}
+    button:hover{background:#36d0f4}button:active{background:#06b1d7}
+    :focus-visible{outline:2px solid #d9f9ff;outline-offset:3px}
+    .signup{position:relative;max-width:426px}
+    .status{position:absolute;top:100%;left:0;right:0;font-size:13px;line-height:1.4;color:#9db3c1;margin:11px 0 0}
+    .status.bad{color:#ffb3a7}
+    /* What replaces the form once the address is saved: the same height as the form, so nothing moves. */
+    .done{display:flex;align-items:center;gap:13px;min-height:53px;padding:5px 16px 5px 14px;border:1px solid #2b6f84;border-radius:8px;background:#06202cf2;color:#d2dfe7;font-size:15px;line-height:1.35;outline:0}
+    .done svg{width:26px;height:26px;flex:none;color:var(--cyan)}
+    .done p{margin:0}
+    .done strong{display:block;color:#f5f8fa;font-weight:700}
+
+    .studios{display:flex;align-items:center;gap:clamp(28px,5.5vw,90px);border-block:1px solid #1e333f;margin-top:clamp(24px,3.4vh,38px);padding:clamp(20px,3.5vh,38px) clamp(4px,2vw,32px);background:rgb(3 15 24 / 86%)}
+    .studios h2{font-size:clamp(16px,1.5vw,21px);letter-spacing:-.035em;white-space:nowrap;font-weight:700;margin:0}
+    .marks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;flex:1;margin:0;padding:0;list-style:none}
+    .marks li{display:flex;justify-content:center;align-items:center;min-width:0;padding:0 15px}
+    .marks li+li{border-left:1px solid #20333f}
+    .marks img{display:block;width:clamp(90px,12.5vw,170px);max-width:100%;height:48px;object-fit:contain}
+    footer{color:#c6d4dd;text-shadow:0 1px 5px #02080d;font-size:12px;line-height:1.4;padding-block:0 max(23px,env(safe-area-inset-bottom))}
+
+    /* Small PC windows and tablets */
+    @media(max-width:990px) and (min-width:701px){
+      :root{--width:93vw}.hero{min-height:410px}.copy{padding:30px;width:55%}.art{width:65%}h1{font-size:clamp(60px,8vw,80px)}
+      .signup{max-width:360px}button{padding-inline:12px}.invite{max-width:290px}
+    }
+    /* A phone on its side, or a very low window: everything that matters stays on the first screen */
+    @media(max-height:540px) and (min-width:701px){
+      .top-inner{height:54px}.wordmark{width:150px}.age-note{font-size:12px}.age{width:27px;height:27px;font-size:10px}
+      main{padding-block:14px 16px}
+      .hero{min-height:max(238px,calc(100vh - 100px));min-height:max(238px,calc(100svh - 100px))}
+      .copy{padding:13px 30px 36px}
+      .label{margin-bottom:9px;font-size:11px}
+      h1{font-size:clamp(40px,14.5vh,62px)}
+      .invite{margin:11px 0 12px;font-size:16px}
+      input,button{height:46px;min-height:46px}.done{min-height:46px;font-size:13.5px;padding:3px 14px}
+      .status{margin-top:8px}
+      .studios{margin-top:16px;padding-block:14px}.marks img{height:36px}
+    }
+    /* Phones */
+    @media(max-width:700px){
+      :root{--width:calc(100% - 32px)}
+      .lobby-backdrop picture{inset:-9px}.lobby-backdrop img{object-position:50% 65%}
+      .top-inner{height:60px}.wordmark{width:143px}.age-note{font-size:11px;gap:7px}.age{width:26px;height:26px;font-size:10px}
+      main{padding-block:16px 22px}
+      .hero{display:block;min-height:0;border-radius:15px}
+      .art{position:relative;z-index:auto;width:100%;height:auto;aspect-ratio:1.3;max-height:340px;-webkit-mask-image:none;mask-image:none;background:#071823}
+      .art img{object-position:50% 42%}
+      .art::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#071823 0%,transparent 19%)}
+      .copy{width:100%;padding:15px 21px 24px}
+      .label{font-size:10px;letter-spacing:.13em;margin:0 0 10px;gap:7px}.label svg{width:17px;height:17px}
+      h1{font-size:clamp(33px,10.4vw,68px);line-height:.99;letter-spacing:-.053em}h1 span{display:inline}
+      .invite{margin:15px 0 18px;font-size:16px;line-height:1.45}
+      .signup{max-width:100%}form{gap:7px}
+      input,button{height:48px;min-height:48px}input{font-size:16px;padding-left:36px}.email svg{left:12px;width:16px}button{font-size:14px;padding:0 13px;gap:6px}
+      .done{min-height:48px;font-size:14px;padding:4px 12px;gap:10px}.done svg{width:23px;height:23px}
+      .status{position:static;font-size:12px;margin-top:10px;min-height:17px}
+      .studios{display:block;margin-top:22px;padding:20px 12px 17px}.studios h2{font-size:16px;margin-bottom:13px}.marks img{height:33px;width:100%}.marks li{padding-inline:9px}
+      footer{font-size:11px;padding-bottom:max(18px,env(safe-area-inset-bottom))}
+    }
+    /* A wide phone: the picture stays a band, it does not push the words off the first screen */
+    @media(max-width:700px) and (min-width:480px){.art{aspect-ratio:2;max-height:300px}}
+    /* A short phone held upright: a lower picture, so the form is on the first screen */
+    @media(max-width:479px) and (max-height:620px){.art{aspect-ratio:1.62}.copy{padding-top:12px}.invite{margin:11px 0 13px}}
+    /* A small phone on its side: words on the left, picture on the right, like on a PC */
+    @media(max-width:700px) and (min-width:480px) and (max-height:480px){
+      .top-inner{height:50px}main{padding-block:10px 14px}
+      .hero{display:flex;align-items:center;min-height:max(226px,calc(100vh - 82px));min-height:max(226px,calc(100svh - 82px))}
+      .art{position:absolute;z-index:-1;inset:0 0 0 auto;width:60%;height:auto;aspect-ratio:auto;max-height:none;background:none;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 34%);mask-image:linear-gradient(90deg,transparent 0%,#000 34%)}
+      .art::after{display:none}
+      .copy{width:62%;padding:14px 18px 34px}
+      .label{margin-bottom:7px}
+      h1{font-size:clamp(34px,12.5vh,46px);line-height:.95}h1 span{display:block}
+      .invite{margin:9px 0 11px;font-size:15px}
+      input,button{height:44px;min-height:44px}.done{min-height:44px;font-size:13px;padding:3px 12px}
+      .status{position:absolute;margin-top:7px}
+      .studios{margin-top:14px;padding-block:14px}
+    }
+    @media(max-width:365px){.copy{padding-inline:14px}button{padding-inline:10px}.top-inner{height:56px}.wordmark{width:123px}.age-note{font-size:10px;gap:6px}}
+    /* The smallest phones: the button goes under the field, so an address can be read while it is typed */
+    @media(max-width:339px){form{flex-direction:column}button{width:100%}.email{flex:none}.done{min-height:103px}}
+    @media(prefers-reduced-motion:no-preference){
+      button,input{transition:background-color .15s ease,border-color .15s ease}
+      .done{animation:arrive .32s ease both}
+      @keyframes arrive{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+    }
+  </style>
+</head>
+<body>
+  <div class="lobby-backdrop" aria-hidden="true">
+    <picture>
+      <source media="(max-width:700px)" type="image/webp" srcset="img/backdrop-mobile.webp">
+      <source media="(max-width:700px)" srcset="img/backdrop-mobile.jpg">
+      <source type="image/webp" srcset="img/backdrop-desktop.webp">
+      <img src="img/backdrop-desktop.jpg" width="1440" height="828" alt="" decoding="async">
+    </picture>
+  </div>
+  <header class="top"><div class="container top-inner">
+    <picture class="brand"><source type="image/webp" srcset="img/logo.webp"><img class="wordmark" src="img/logo.png" width="600" height="120" alt="Benzabet"></picture>
+    <div class="age-note"><span class="age">18+</span><span>Play responsibly</span></div>
+  </div></header>
+  <main class="container">
+    <section class="hero" aria-labelledby="launch">
+      <div class="art"><picture>
+        <source type="image/webp" srcset="img/owl-office-1000.webp 1000w, img/owl-office.webp 1672w" sizes="(max-width:700px) 100vw, 69vw">
+        <img src="img/owl-office.jpg" srcset="img/owl-office-1000.jpg 1000w, img/owl-office.jpg 1672w" sizes="(max-width:700px) 100vw, 69vw" width="1672" height="941" fetchpriority="high" decoding="async" alt="The Benzabet owl in sunglasses at its desk beneath the silver Benzabet emblem.">
+      </picture></div>
+      <div class="copy">
+        <p class="label"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="m8 4-3.5 1a2 2 0 0 0-1.3 2.4L6.6 20"/><rect x="8" y="3" width="13" height="17" rx="2.5"/><path d="M14.5 7.5c-1 1.4-3.1 2.8-3.1 4.2 0 1.7 2 2.1 3.1.7 1.1 1.4 3.1 1 3.1-.7 0-1.4-2.1-2.8-3.1-4.2Z" fill="currentColor" stroke="none"/><path d="m14.5 11.8-1 3.4h2Z" fill="currentColor" stroke="none"/></svg>Benzabet Casino</p>
+        <h1 id="launch"><span>Coming</span> <span>soon<b>.</b></span></h1>
+        <p class="invite">Get an email when the casino opens.</p>
+        <div class="signup">
+        <form id="notify" novalidate>
+          <label class="email"><span class="sr">Email address</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>
+            <input id="email" name="email" type="email" placeholder="Email address" inputmode="email" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="send" maxlength="254" required aria-describedby="status"></label>
+          <div class="trap" aria-hidden="true"><label>Leave this empty <input id="trap" name="extra-note" type="text" tabindex="-1" autocomplete="off"></label></div>
+          <button type="submit"><span>Notify me</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 5 7 7-7 7"/></svg></button>
+        </form>
+        <div class="done" id="done" tabindex="-1" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="m7.8 12.4 2.9 2.9 5.6-6.1"/></svg>
+          <p><strong>You're on the list.</strong> We'll email you when the casino opens.</p>
+        </div>
+        <p class="status" id="status" role="status" aria-live="polite">No spam: one email at launch.</p>
+        <noscript><p class="status bad">Please turn on JavaScript to leave your email address.</p></noscript>
+        </div>
+      </div>
+    </section>
+    <section class="studios" aria-labelledby="studios"><h2 id="studios">Featured studios</h2>
+      <ul class="marks"><li><img src="img/studio-paperclip.png" width="280" height="106" alt="Paperclip Gaming" loading="lazy" decoding="async"></li><li><img src="img/studio-valkyrie.png" width="280" height="106" alt="Valkyrie" loading="lazy" decoding="async"></li><li><img src="img/studio-donut.png" width="280" height="106" alt="Donut Gaming" loading="lazy" decoding="async"></li></ul>
+    </section>
+  </main>
+  <footer class="container">&copy; 2026 Benzabet</footer>
+  <script>
+  (function () {
+    'use strict';
+    // Where the address is saved: the web app of the Google Sheet "Benzabet launch list".
+    var ENDPOINT = 'https://script.google.com/macros/s/AKfycbyAx90I5icotmSR2tX2DrBplw-H8sqvYJENmyH5_TnKTZK1wR1-OKd54zwfOBdndzjIoQ/exec';
+    var WAITS = [1500, 4000];        // pauses before the second and the third try
+    var LIMIT = 20000;               // one request is given up after this long
+    var PATIENCE = 45000;            // no new try is started after this long
+
+    var form = document.getElementById('notify');
+    var input = document.getElementById('email');
+    var trap = document.getElementById('trap');
+    var done = document.getElementById('done');
+    var status = document.getElementById('status');
+    var HINT = status.textContent;
+    var busy = false;
+
+    function say(text, bad) {
+      status.textContent = text;
+      status.className = bad ? 'status bad' : 'status';
+      if (bad) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
+    }
+
+    // The same rule as the sheet's script, so the page never accepts what the sheet refuses.
+    function clean(value) {
+      var email = String(value || '').replace(/^\s+|\s+$/g, '').toLowerCase();
+      if (email.length < 6 || email.length > 254) return '';
+      if (!/^[a-z0-9_][a-z0-9._%+\-]{0,63}@[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?)*\.[a-z]{2,24}$/.test(email)) return '';
+      var local = email.slice(0, email.indexOf('@'));
+      if (local.indexOf('..') >= 0 || local.charAt(local.length - 1) === '.') return '';
+      return email;
+    }
+
+    // One request. `readable` asks for the sheet's answer; without it the request is only sent.
+    function post(email, readable, onReply, onFail) {
+      var ctl = window.AbortController ? new AbortController() : null;
+      var over = false;
+      function end(fn, arg) { if (over) return; over = true; clearTimeout(timer); fn(arg); }
+      var timer = setTimeout(function () { if (ctl) ctl.abort(); end(onFail); }, LIMIT);
+      var request = {
+        method: 'POST', mode: readable ? 'cors' : 'no-cors', credentials: 'omit', cache: 'no-store',
+        redirect: 'follow', referrerPolicy: 'no-referrer', keepalive: true,
+        body: 'email=' + encodeURIComponent(email) + '&company=' + encodeURIComponent(trap.value) + '&from=' + encodeURIComponent(location.hostname)
+      };
+      if (ctl) request.signal = ctl.signal;
+      var sent;
+      try { sent = fetch(ENDPOINT, request); } catch (err) { end(onFail); return; }
+      sent.then(function (res) {
+        if (!readable) { end(onReply, 'OK'); return; }
+        if (!res.ok) { end(onReply, 'BUSY'); return; }
+        res.text().then(function (text) { end(onReply, String(text || '').replace(/\s+$/, '')); }, function () { end(onFail); });
+      }, function () { end(onFail); });
+    }
+
+    // Saves the address: asks for the answer; if the answer cannot be read, sends it plainly;
+    // on "busy" or no connection, tries again twice.
+    function save(email, attempt, since, onSaved, onRefused, onFailed) {
+      function again() {
+        if (attempt >= WAITS.length || Date.now() - since > PATIENCE) { onFailed(); return; }
+        setTimeout(function () { save(email, attempt + 1, since, onSaved, onRefused, onFailed); }, WAITS[attempt]);
+      }
+      post(email, true, function (reply) {
+        if (reply === 'OK') onSaved();
+        else if (reply === 'NO') onRefused();
+        else again();
+      }, function () {
+        post(email, false, onSaved, again);
+      });
+    }
+
+    function showDone() {
+      form.hidden = true;
+      done.hidden = false;
+      say('', false);
+    }
+    function showForm(text) {
+      done.hidden = true;
+      form.hidden = false;
+      say(text, true);
+      try { input.focus(); } catch (err) {}
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (busy) return;
+      var email = clean(input.value);
+      if (!email) {
+        say(input.value.replace(/\s/g, '') ? 'Please check the email address.' : 'Please type your email address.', true);
+        try { input.focus(); } catch (err) {}
+        return;
+      }
+      if (!ENDPOINT || !window.fetch) {
+        say('Sign-up is not open yet. Please come back soon.', true);
+        return;
+      }
+      busy = true;
+      // The thank-you appears at once; the address is saved meanwhile. If it cannot be saved, the form comes back.
+      showDone();
+      try { done.focus({ preventScroll: true }); } catch (err) {}
+      save(email, 0, Date.now(), function () {
+        busy = false;
+        input.value = '';
+      }, function () {
+        busy = false;
+        showForm('Please check the email address.');
+      }, function () {
+        busy = false;
+        showForm('We could not save it just now. Please try again.');
+      });
+    });
+
+    input.addEventListener('input', function () {
+      if (status.className !== 'status' || status.textContent !== HINT) say(HINT, false);
+    });
+  })();
+  </script>
+</body>
+</html>
