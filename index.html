@@ -22,14 +22,14 @@
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-  <link rel="preload" as="image" type="image/webp" imagesrcset="img/owl-office-1000.webp 1000w, img/owl-office.webp 1672w" imagesizes="(max-width:700px) 100vw, 69vw">
+  <link rel="preload" as="image" type="image/webp" imagesrcset="img/owl-office-1000.webp 1000w, img/owl-office.webp 1672w" imagesizes="(max-width:700px) 100vw, 1300px">
   <style>
     :root{--base:#020b12;--surface:#071823;--text:#f5f8fa;--muted:#aec0cc;--cyan:#00bfec;--line:#233947;--width:min(1240px,90vw);color-scheme:dark;font-family:Arial,Helvetica,sans-serif;background:var(--base);color:var(--text)}
     *{box-sizing:border-box}
     html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     body{margin:0;display:flex;min-height:100vh;min-height:100svh;flex-direction:column;isolation:isolate}
     [hidden]{display:none!important}
-    .container{width:var(--width);margin-inline:auto}
+    .container{width:var(--width);max-width:calc(100% - 2*max(env(safe-area-inset-left,0px),env(safe-area-inset-right,0px)));margin-inline:auto}
 
     /* The casino lobby, out of focus, behind the page. The blur is in the picture itself. The box keeps one
        size when a phone's address bar slides away, so the picture never jumps. */
@@ -75,13 +75,14 @@
     .signup{position:relative;max-width:426px}
     .status{position:absolute;top:100%;left:0;right:0;font-size:13px;line-height:1.4;color:#9db3c1;margin:11px 0 0}
     .status.bad{color:#ffb3a7}
-    /* What replaces the form once the address is saved: the same height as the form, so nothing moves. */
+    /* What replaces the form once the address is saved: the same height as the form while the address fits on one line. */
     .done{display:flex;align-items:center;gap:13px;min-height:53px;padding:5px 16px 5px 14px;border:1px solid #2b6f84;border-radius:8px;background:#06202cf2;color:#d2dfe7;font-size:15px;line-height:1.35;outline:0}
     .done svg{width:26px;height:26px;flex:none;color:var(--cyan)}
     .done p{margin:0}
     .done strong{display:block;color:#f5f8fa;font-weight:700}
-    .who{display:block;overflow-wrap:anywhere;color:#b9c9d4}
-    .change{display:inline-block;margin:-7px 0 -7px 4px;padding:7px 4px;color:#5fd8fa;white-space:nowrap;text-underline-offset:2px}
+    .who{display:block;overflow-wrap:anywhere;color:#b9c9d4;word-spacing:8px}
+    .change{position:relative;display:inline-block;color:#5fd8fa;white-space:nowrap;text-underline-offset:2px}
+    .change::after{content:"";position:absolute;inset:-13px -8px}
     .change:hover{color:#a8ecff}
 
     .studios{display:flex;align-items:center;gap:clamp(28px,5.5vw,90px);border-block:1px solid #1e333f;margin-top:clamp(24px,3.4vh,38px);padding:clamp(20px,3.5vh,38px) clamp(4px,2vw,32px);background:rgb(3 15 24 / 86%)}
@@ -132,7 +133,7 @@
       footer{font-size:11px;padding-bottom:max(18px,env(safe-area-inset-bottom))}
     }
     /* A wide phone: the picture stays a band, it does not push the words off the first screen */
-    @media(max-width:700px) and (min-width:480px){.art{aspect-ratio:2;max-height:300px}}
+    @media(max-width:700px) and (min-width:480px){.art{aspect-ratio:1.9;max-height:none}.art img{object-position:50% 0}}
     /* A short phone held upright: a lower picture, so the form is on the first screen */
     @media(max-width:479px) and (max-height:620px){.art{aspect-ratio:1.62}.copy{padding-top:12px}.invite{margin:11px 0 13px}}
     /* A small phone on its side: words on the left, picture on the right, like on a PC */
@@ -151,7 +152,7 @@
     }
     @media(max-width:365px){.copy{padding-inline:14px}button{padding-inline:10px}.top-inner{height:56px}.wordmark{width:123px}.age-note{font-size:10px;gap:6px}}
     /* The smallest phones: the button goes under the field, so an address can be read while it is typed */
-    @media(max-width:339px){form{flex-direction:column}button{width:100%}.email{flex:none}.done{min-height:103px}}
+    @media(max-width:339px){form{flex-direction:column}button{width:100%}.email{flex:none}.done{min-height:103px}.invite{font-size:15px}}
     @media(prefers-reduced-motion:no-preference){
       button,input{transition:background-color .15s ease,border-color .15s ease}
       .done{animation:arrive .32s ease both}
@@ -175,8 +176,8 @@
   <main class="container">
     <section class="hero" aria-labelledby="launch">
       <div class="art"><picture>
-        <source type="image/webp" srcset="img/owl-office-1000.webp 1000w, img/owl-office.webp 1672w" sizes="(max-width:700px) 100vw, 69vw">
-        <img src="img/owl-office.jpg" srcset="img/owl-office-1000.jpg 1000w, img/owl-office.jpg 1672w" sizes="(max-width:700px) 100vw, 69vw" width="1672" height="941" fetchpriority="high" decoding="async" alt="The Benzabet owl in sunglasses at its desk beneath the silver Benzabet emblem.">
+        <source type="image/webp" srcset="img/owl-office-1000.webp 1000w, img/owl-office.webp 1672w" sizes="(max-width:700px) 100vw, 1300px">
+        <img src="img/owl-office.jpg" srcset="img/owl-office-1000.jpg 1000w, img/owl-office.jpg 1672w" sizes="(max-width:700px) 100vw, 1300px" width="1672" height="941" fetchpriority="high" decoding="async" alt="The Benzabet owl in sunglasses at its desk beneath the silver Benzabet emblem.">
       </picture></div>
       <div class="copy">
         <p class="label"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="m8 4-3.5 1a2 2 0 0 0-1.3 2.4L6.6 20"/><rect x="8" y="3" width="13" height="17" rx="2.5"/><path d="M14.5 7.5c-1 1.4-3.1 2.8-3.1 4.2 0 1.7 2 2.1 3.1.7 1.1 1.4 3.1 1 3.1-.7 0-1.4-2.1-2.8-3.1-4.2Z" fill="currentColor" stroke="none"/><path d="m14.5 11.8-1 3.4h2Z" fill="currentColor" stroke="none"/></svg>Benzabet Casino</p>
@@ -266,13 +267,14 @@
     }
 
     // Saves the address; on "busy" or a failure it tries again, twice, after a pause.
-    function save(email, attempt, since, onSaved, onRefused, onFailed) {
+    function save(email, attempt, since, mine, onSaved, onRefused, onFailed) {
       function again() {
+        if (mine !== round) return;
         if (attempt >= WAITS.length || Date.now() - since > PATIENCE) { onFailed(); return; }
         var run = function () {
           if (next !== run) return;
           next = null;
-          save(email, attempt + 1, since, onSaved, onRefused, onFailed);
+          save(email, attempt + 1, since, mine, onSaved, onRefused, onFailed);
         };
         next = run;
         setTimeout(run, WAITS[attempt]);
@@ -315,14 +317,14 @@
         return;
       }
       if (!ENDPOINT) { say('Sign-up is not open yet. Please come back soon.', 'bad'); return; }
-      if (!window.fetch) { say('This browser cannot send the form. Please try another browser.', 'bad'); return; }
-      if (navigator.onLine === false) { say('You seem to be offline. Please try again when you are connected.', 'bad'); return; }
+      if (!window.fetch) { say('Please try another browser to sign up.', 'bad'); return; }
+      if (navigator.onLine === false) { say('You seem to be offline. Please try again later.', 'bad'); return; }
       busy = true;
       var mine = ++round;
       // The thank-you appears at once; the address is saved meanwhile. If it cannot be saved, the form comes back.
       showDone(email);
       try { done.focus({ preventScroll: true }); } catch (err) {}
-      save(email, 0, Date.now(), function () {
+      save(email, 0, Date.now(), mine, function () {
         if (mine !== round) return;
         busy = false;
         input.value = '';
@@ -341,6 +343,7 @@
     change.addEventListener('click', function (event) {
       event.preventDefault();
       round++;
+      next = null;
       busy = false;
       input.value = saved.textContent;
       showForm(HINT, '');
